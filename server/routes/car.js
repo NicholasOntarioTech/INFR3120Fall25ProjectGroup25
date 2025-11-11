@@ -62,15 +62,15 @@ router.post('/add',async(req,res,next)=>{
     }
 })
 // Get route for displaying the Edit Page - Update Operation
-router.get('/edit/:id',async(req,res,next)=>{
+router.get('cars/edit/:id',async(req,res,next)=>{
 
 })
 // Post route for processing the Edit Page - Update Operation
-router.post('/edit/:id',async(req,res,next)=>{
+router.post('cars/edit/:id',async(req,res,next)=>{
 
 })
 // Get route for performing delete operation - Delete Operation
-router.get('/delete/:id',async(req,res,next)=>{
+router.get('cars/delete/:id',async(req,res,next)=>{
 
 })
 module.exports = router;
