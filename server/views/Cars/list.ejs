@@ -14,6 +14,8 @@
                     <th class="text-center col-1">Year</th>
                     <th class="text-center col-2">Mileage</th>
                     <th class="text-center col-2">Price</th>
+                    <th class="text-center col-2">Edit</th>
+                    <th class="text-center col-2">Delete</th>
                 </tr>
                 <!--for/while loop-->
                 <% for(let count=0; count<CarList.length;count++) { %>
@@ -23,13 +25,15 @@
                         <td class="text-center col-1"><%= CarList[count].year %></td>
                         <td class="text-center col-2"><%= CarList[count].mileage %> km</td>
                         <td class="text-center col-2">$<%= CarList[count].price %></td>
+                        <td class="text-center col-2"><a href="/cars/edit/<%=CarList[count]._id%>"
+                            class="btn btn-primary btn-sm"><i class ="fas fa-pencil-alt"></i>Edit</a></td>
+                        <td class="text-center col-2"><a href="/cars/delete/<%=CarList[count]._id%>"
+                            class="btn btn-danger btn-sm"><i class ="fas fa-trash-alt"></i>Delete</a></td>
                     </tr>
                 <% } %>
             </table>
 
             <a href="/cars/add">Add A Car</a><br>
-            <a href="/cars/edit">Edit A Car</a><br>
-            <a href="/cars/delete">Delete A Car</a>
 
         </div>
     </div>

@@ -60,20 +60,64 @@ router.post('/add',async(req,res,next)=>{
         console.error(err);
         res.render('Cars/add',{
             error:'Error on server',
-            title:'Error'
         })
     }
 })
 // Get route for displaying the Edit Page - Update Operation
-router.get('cars/edit/:id',async(req,res,next)=>{
-
+router.get('/edit/:id',async(req,res,next)=>{
+    try
+    {
+        const id = req.params.id;
+        const carToEdit = await Car.findById(id);
+        res.render("Cars/edit",
+            {
+                title:"Edit Car",
+                car: carToEdit
+            }
+        )
+    }
+    catch(err)
+    {
+        console.log(err);
+        next(err);
+    }
 })
 // Post route for processing the Edit Page - Update Operation
-router.post('cars/edit/:id',async(req,res,next)=>{
-
+router.post('/edit/:id',async(req,res,next)=>{
+    try
+    {
+        let id = req.params.id;
+        let updateCar = Car({
+            "_id":id,
+            "make":req.body.make,
+            "model":req.body.model,
+            "mileage":req.body.mileage,
+            "year":req.body.year,
+            "price":req.body.price
+        })
+        Car.findByIdAndUpdate(id,updateCar).then(()=>{
+            res.redirect("/cars")
+        })
+    }
+    catch(err)
+    {
+        console.log(err);
+        next(err);
+    }
 })
 // Get route for performing delete operation - Delete Operation
-router.get('cars/delete/:id',async(req,res,next)=>{
-
+router.get('/delete/:id',async(req,res,next)=>{
+    try
+    {
+        let id = req.params.id;
+        Car.deleteOne({_id:id}).then(()=>{
+            res.redirect("/cars")
+        })
+    }
+    catch(err)
+    {
+        console.log(err);
+        next(err);
+    }
 })
 module.exports = router;
