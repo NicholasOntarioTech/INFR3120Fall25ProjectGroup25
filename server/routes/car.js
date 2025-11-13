@@ -18,7 +18,8 @@ router.get('/',async(req,res,next)=>{
     {
         console.error(err);
         res.render('Cars/list',{
-            error:'Error on server'
+            error:'Error on server',
+            title:'Error'
         })
     }
 })
@@ -34,7 +35,8 @@ router.get('/add',async(req,res,next)=>{
     {
         console.error(err);
         res.render('Cars/add',{
-            error:'Error on server'
+            error:'Error on server',
+            title:'Error'
         })
     }
 })
@@ -57,7 +59,8 @@ router.post('/add',async(req,res,next)=>{
     {
         console.error(err);
         res.render('Cars/add',{
-            error:'Error on server'
+            error:'Error on server',
+            title:'Error'
         })
     }
 })
