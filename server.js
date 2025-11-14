@@ -9,6 +9,7 @@ Create, Read, Update, Delete --> CRUD Operation
 var app = require('./server/config/app');
 var debug = require('debug')('webproject:server');
 var http = require('http');
+var mongoURI = require('dotenv').config();
 
 /**
  * Get port from environment and store in Express.
