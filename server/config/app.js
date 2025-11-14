@@ -4,13 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 let mongoose = require('mongoose');
-let dotenv = require('dotenv').config();
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 let carsRouter = require('../routes/car')
 var app = express();
+require('dotenv').config();
 
 // Test DB Connection
+
 mongoose.connect(process.env.mongoDB_URI);
 let mongoDB = mongoose.connection;
 mongoDB.on('error',console.error.bind(console,'Connection error'));

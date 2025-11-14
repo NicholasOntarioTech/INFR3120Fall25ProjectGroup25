@@ -19,8 +19,8 @@
 /* make sure main content doesn't stick to the navbar */
 main,
 .container {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 /* max-width for content */
@@ -49,6 +49,7 @@ p {
 .navbar-brand {
   font-weight: 600;
   letter-spacing: 0.04em;
+  align-items: center;
 }
 
 /* card style wrapper */
@@ -67,6 +68,13 @@ p {
 
 .app-card-header p {
   margin: 0.15rem 0 0;
+}
+
+.wrapper {
+  max-width: 1200px;
+  padding: 10px 0px 0px 10px;
+  background-color: #f1f1f1;
+  min-height: calc(100vh - 250px);
 }
 
 /* hero section on the home page */
@@ -106,8 +114,12 @@ p {
   margin-top: auto;
   padding: 1rem 0;
   font-size: 0.8rem;
-  color: #9ca3af;
+  color: #000000;
   text-align: center;
+  background-color: #6b7280;
+  border-top: 1px solid #313131;
 }
+
+
 
 
