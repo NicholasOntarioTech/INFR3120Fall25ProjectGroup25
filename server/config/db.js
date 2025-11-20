@@ -1,1 +1,0 @@
-module.exports={"URI":"mongodb+srv://nicholasskoric_db_user:2FSaAXosGFGjucVc@cluster0.rnsas4v.mongodb.net/CarList"}
