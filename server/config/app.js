@@ -54,6 +54,12 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// make the logged-in user available in all EJS views
+app.use((req, res, next) => {
+  res.locals.user = req.user;   // will be undefined if not logged in
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
@@ -82,7 +88,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error',{title:'Error'});
+res.render('error', { title: 'Error', user: req.user }); //CHANGED
 });
 
 module.exports = app;
