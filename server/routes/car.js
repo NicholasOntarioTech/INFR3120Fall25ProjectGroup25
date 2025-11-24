@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 let Car = require('../models/car');
+const {ensureLoggedIn} = require('../config/auth');
 
 // Get route for the read car list - Read Operation
 router.get('/',async(req,res,next)=>{
@@ -63,61 +64,57 @@ router.post('/add',async(req,res,next)=>{
         })
     }
 })
-// Get route for displaying the Edit Page - Update Operation
-router.get('/edit/:id',async(req,res,next)=>{
+// Get route for displaying the Edit Page - Update Operation - Requires login to use
+router.get('/edit/:id',ensureLoggedIn, async(req,res,next)=>{
     try
     {
-        const id = req.params.id;
-        const carToEdit = await Car.findById(id);
+        const carToEdit = await Car.findById(req.params.id);
+        if (!carToEdit) return res.status(404).send('Listing not found');
         res.render("Cars/edit",
             {
                 title:"Edit Car",
                 car: carToEdit
             }
-        )
+        );
     }
     catch(err)
     {
         console.log(err);
         next(err);
     }
-})
-// Post route for processing the Edit Page - Update Operation
-router.post('/edit/:id',async(req,res,next)=>{
+});
+// Post route for processing the Edit Page - Update Operation - Requires login to use
+router.post('/edit/:id',ensureLoggedIn,async(req,res,next)=>{
     try
     {
-        let id = req.params.id;
-        let updateCar = Car({
-            "_id":id,
+        const id = req.params.id;
+        const updateData = {
             "make":req.body.make,
             "model":req.body.model,
             "mileage":req.body.mileage,
             "year":req.body.year,
             "price":req.body.price
-        })
-        Car.findByIdAndUpdate(id,updateCar).then(()=>{
+        };
+        await Car.findByIdAndUpdate(id,updateData);
             res.redirect("/cars")
-        })
+        
     }
     catch(err)
     {
         console.log(err);
         next(err);
     }
-})
-// Get route for performing delete operation - Delete Operation
-router.get('/delete/:id',async(req,res,next)=>{
+});
+// Get route for performing delete operation - Delete Operation - Requires being logged in to use
+
+router.get('/delete/:id',ensureLoggedIn, async(req,res,next)=>{
     try
     {
-        let id = req.params.id;
-        Car.deleteOne({_id:id}).then(()=>{
-            res.redirect("/cars")
-        })
-    }
-    catch(err)
-    {
-        console.log(err);
+        await Car.deleteOne({_id: req.params.id});
+        res.redirect("/cars");
+    } catch (err) {
         next(err);
     }
-})
-module.exports = router;
+});
+
+module.exports = router; 

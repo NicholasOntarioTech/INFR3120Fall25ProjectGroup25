@@ -7,6 +7,7 @@ let mongoose = require('mongoose');
 var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 let carsRouter = require('../routes/car')
+const {ensureLoggedIn} = require('../config/auth')
 
 var app = express();
 require('dotenv').config();

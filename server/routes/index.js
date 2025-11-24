@@ -4,6 +4,7 @@ const passport = require('passport');
 require('dotenv').config();
 let userModel = require('../models/user')
 let User = userModel.User;
+const {ensureLoggedIn} = require('../config/auth');
 
 /* GET home page. */
 // 127.0.0.1 (/)
