@@ -11,6 +11,7 @@ const {ensureLoggedIn} = require('../config/auth')
 
 var app = express();
 require('dotenv').config();
+const MONGO_URI = process.env.MONGO_URI
 
 //authentication requirements
 let session = require('express-session');
