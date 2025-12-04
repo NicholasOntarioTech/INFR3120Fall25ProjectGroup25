@@ -9,13 +9,13 @@ let User = mongoose.Schema({
         trim:true,
         required:'Username is required'
     },
-    /*password:
+    password:
     {
         type:String,
         default:'',
         trim:true,
         required:'Password is required'
-    },*/
+    },
     email:
     {
         type:String,
@@ -48,5 +48,5 @@ let User = mongoose.Schema({
 let options = {MissingPasswordError:'! Wrong or Missing Password !'};
 User.plugin(passportLocalMongoose, options);
 
-module.exports.User = mongoose.model('User', User); //MMeans this file will be accessible throughout project
+module.exports.User = mongoose.model('User', User); //Means this file will be accessible throughout project
 
