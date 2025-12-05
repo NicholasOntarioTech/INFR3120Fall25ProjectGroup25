@@ -11,7 +11,7 @@ const {ensureLoggedIn} = require('../config/auth')
 
 var app = express();
 require('dotenv').config();
-var mongoDB_URI = process.env.MONGODB_URI
+const MONGO_URI = process.env.MONGO_URI
 
 //authentication requirements
 let session = require('express-session');
@@ -35,7 +35,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // Test DB Connection
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.mongoDB_URI);
 let mongoDB = mongoose.connection;
 mongoDB.on('error',console.error.bind(console,'Connection error'));
 mongoDB.once('open',()=>{
