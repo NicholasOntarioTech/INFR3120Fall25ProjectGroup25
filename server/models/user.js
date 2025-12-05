@@ -9,13 +9,13 @@ let User = mongoose.Schema({
         trim:true,
         required:'Username is required'
     },
-    password:
+    /*password:
     {
         type:String,
         default:'',
         trim:true,
         required:'Password is required'
-    },
+    },*/
     email:
     {
         type:String,
@@ -40,6 +40,24 @@ let User = mongoose.Schema({
         type:Date,
         default:Date.now
     },
+
+    googleId: {
+        type: String,
+        default: null
+    },
+    githubId: {
+        type: String,
+        default: null
+    },
+    facebookId: {
+        type: String,
+        default: null
+    },
+
+    profilePhoto: {
+        type: String,
+        default: ''
+    }
 },
 { //Stores users in the same database as Cars, but in a different collection
     collection:"user"
@@ -48,5 +66,5 @@ let User = mongoose.Schema({
 let options = {MissingPasswordError:'! Wrong or Missing Password !'};
 User.plugin(passportLocalMongoose, options);
 
-module.exports.User = mongoose.model('User', User); //Means this file will be accessible throughout project
+module.exports = mongoose.model('User', User); //MMeans this file will be accessible throughout project
 

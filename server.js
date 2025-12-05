@@ -11,7 +11,7 @@ var debug = require('debug')('webproject:server');
 var http = require('http');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const MONGO_URI = process.env.MONGO_URI
+const PORT = process.env.PORT
 
 /**
  * Get port from environment and store in Express.

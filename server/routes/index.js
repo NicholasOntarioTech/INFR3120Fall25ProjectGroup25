@@ -106,5 +106,40 @@ router.get('/logout',function(req,res,next){
   res.redirect("/");
 })
 
+
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+      res.redirect('/');
+  }
+);
+
+router.get('/auth/github',
+  passport.authenticate('github', {scope: ['user:email'] })
+);
+
+router.get('/auth/github/callback',
+  passport.authenticate('github', {failureRedirect: '/login'}),
+  (req, res) => {
+    res.redirect('/');
+  }
+);
+
+router.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: ['email'] })
+);
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login'}),
+  (req, res) => {
+    res.redirect('/');
+  }
+);
+
+
 module.exports = router;
 
