@@ -3,7 +3,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('../models/user');
 
 passport.use(new FacebookStrategy(
-    {
+    {   //registers with the facebook authentication for the webapp
         clientID: process.env.FB_APP_ID,
         clientSecret: process.env.FB_APP_SECRET,
         callbackURL: "https://infr3120fall25projectgroup25-5jme.onrender.com/auth/facebook/callback",
@@ -14,11 +14,11 @@ passport.use(new FacebookStrategy(
         try {
             let user = await User.findOne({ facebookId: profile.id});
             if (user) 
-                return done(null, user);
+                return done(null, user);//checks if user exists already, if not creates a new one
 
-            const email = profile.emails?.[0]?.value || `${profile.id}@facebook.local`;
+            const email = profile.emails?.[0]?.value || `${profile.id}@facebook.local`; //creates a local email from the facebook profile
             
-            user - await User.create({
+            user - await User.create({ //creates a user based on the account provideds information
                 username: profile.id,
                 email: email,
                 displayName: profile.displayName || profile.username,

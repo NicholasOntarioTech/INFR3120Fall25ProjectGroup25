@@ -106,7 +106,7 @@ router.get('/logout',function(req,res,next){
   res.redirect("/");
 })
 
-
+//redirects to the corresponding third party login page and sends the user back to either the login page on failure, or the homepage on success
 router.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
