@@ -6,7 +6,7 @@ passport.use(new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback"
+      callbackURL: "https://infr3120fall25projectgroup25-5jme.onrender.com/auth/google/callback"
     },
   
     async (accessToken, refreshToken, profile, done) => {

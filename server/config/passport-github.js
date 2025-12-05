@@ -6,7 +6,7 @@ passport.use(new GitHubStrategy(
     {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "/auth/github/callback"
+        callbackURL: "https://infr3120fall25projectgroup25-5jme.onrender.com/auth/github/callback"
     },
 
     async (accessToken, refreshToken, profile, done) => {

@@ -6,7 +6,7 @@ passport.use(new FacebookStrategy(
     {
         clientID: process.env.FB_APP_ID,
         clientSecret: process.env.FB_APP_SECRET,
-        callbackURL: "http://localhost:3000/auth/facebook/callback",
+        callbackURL: "https://infr3120fall25projectgroup25-5jme.onrender.com/auth/facebook/callback",
         profileFields: ['id', 'emails', 'displayName', 'photos']
     },
 
